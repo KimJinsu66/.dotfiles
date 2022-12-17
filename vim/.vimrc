@@ -474,4 +474,4 @@ let g:db_ui_icons = {
 \ 'buffers': '»',
 \ 'connection_ok': '✓',
 \ 'connection_error': '✕',
-\ }
+\
