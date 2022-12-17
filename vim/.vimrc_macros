@@ -1,0 +1,13 @@
+" debug
+let @d="A\n\<Esc>ip '-------------------'\np \"{} #{}\"\np '-------------------'\<Esc>kk0vjj=j0f{li"
+let @p="A\n\<Esc>ip \"{} #{}\"\<Esc>0v=f{li"
+let @f="/do\<Enter>v/end\<Enter>zf"
+
+let @2="i\"\"\<Esc>i"
+let @7="i\'\'\<Esc>i"
+
+let @c="f#v$xi\<Enter>\<Esc>"
+
+" Rubocop
+let @r="f,li\<Enter>\<ESC>"
+let @9="f)li\<Enter>\<ESC>"
