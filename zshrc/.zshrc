@@ -80,7 +80,10 @@ export TERM=xterm-256color
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -146,6 +149,8 @@ alias starta='source ~/Desktop/Jinsu/shell/start_agnt.sh'
 ## tmux
 alias ide='bash ~/Desktop/Jinsu/shell/tmux/ide.bash'
 alias e='exit'
+alias twn='tmux new-window -n'
+alias twr='tmux rename-window'
 
 
 ## rails
@@ -155,17 +160,47 @@ alias tc='~/Desktop/Jinsu/shell/rails/test_context.sh'
 ## shell
 alias dr='~/Desktop/Jinsu/shell/shell/remove_debug_code.sh'
 alias tr='bash ~/Desktop/Jinsu/shell/shell/translate.sh'
+alias nc='bash ~/Desktop/Jinsu/shell/shell/notion/create_database_record.bash'
+alias ch='bash ~/Desktop/Jinsu/shell/shell/check_list.sh'
+
+# -----------------------
+# ruby script
+# -----------------------
+
+alias pru='ruby ~/Desktop/products/verdandi/.script/pull_request_updater.rb'
+
 # -----------------------
 # open site
 # -----------------------
 alias oc='open -a google\ chrome'
 alias google='open https://www.google.com'
+alias d-ja='open https://ja.dict.naver.com/#/main'
+alias frey='open https://github.com/ga-tech/frey/pulls'
+alias obpm='open https://obpm.jp/PM5702585621WEB/PjWorkInput.html'
+alias soji='open https://docs.google.com/spreadsheets/d/12xBPHtE_xHLLC312TK-ARxkSdU2OO0jRAHSLtNGkziM/edit#gid=602904498'
+alias kot='open https://s2.kingtime.jp/admin'
+alias kot='open https://s2.kingtime.jp/admin'
+alias kot='open https://s2.kingtime.jp/admin'
+
+alias gagnt='open https://github.com/ga-tech/verdandi/pulls'
 
 # ----------------------------------------
 # cd
 # ---------------------------------------
+alias cdsk='cd ~/Desktop/products/skuld'
+alias cdf='cd ~/Desktop/products/frey'
+alias cde='cd ~/Desktop/products/eldir'
+alias cdsn='cd ~/Desktop/products/sale_nomad_cloud'
+alias cdd='cd ~/Desktop/products/common-db-docker'
+alias cda='cd ~/Desktop/products/verdandi'
+alias cdi='cd ~/Desktop/products/agnt_rda'
+alias cdm='cd ~/Desktop/products/tech_after'
+alias cdc='cd ~/Desktop/products/common-db-docker'
 alias jshell='cd ~/Desktop/Jinsu/shell'
 alias cdsa='cd ~/Desktop/products/supplier-article'
+alias va='cd ~/Desktop/vagrant'
+alias sni='cd ~/.vim/plugged/vim-snippets/snippets'
+alias mm='cd ~/Desktop/Jinsu/memo'
 
 # ----------------------------------------
 # git
@@ -180,9 +215,10 @@ alias gp='git push origin'
 alias gd='git diff | git-split-diffs --color | less -RFX'
 alias gpu='git pull origin'
 alias gm='git merge'
+alias grc='git rebase --con'
+alias gpd='git pull origin develop'
 alias gsd='source ~/Desktop/Jinsu/shell/git_code_delete.sh'
 alias gl='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h %Creset-%C(yellow)%d %Creset%s %Cgreen(%cr)%C(bold blue)<%an>"'
-
 # ----------------------------------------
 # docker
 # ---------------------------------------
@@ -190,6 +226,7 @@ alias sd='/usr/bin/open /Applications/Docker.app'
 alias d='docker'
 alias dc='docker-compose'
 alias dcu='docker-compose up'
+alias dcb='docker-compose exec web bash'
 alias dcewa='docker-compose exec webapp'
 alias dcew='docker-compose exec web'
 alias db='docker-compose exec web bash'
@@ -197,6 +234,14 @@ alias lint='docker-compose exec webapp yarn lint:js --fix; docker-compose exec w
 alias lintf='docker-compose exec webapp yarn lint:js --fix'
 alias rubocop='docker-compose exec webapp rubocop'
 alias test='docker-compose exec webapp rails test'
+alias api='docker-compose exec aglio bash build.sh'
+
+# ----------------------------------------
+# aws_sso_ruby
+# ---------------------------------------
+alias ssof='aws_sso_ruby auth -p ga_frey_dev'
+alias ssoe='aws_sso_ruby auth -p ga_eldir_dev'
+alias ssoa='aws_sso_ruby auth -p ga_main'
 
 # gh
 eval "$(gh completion -s zsh)"
@@ -233,8 +278,8 @@ alias vr='vagrant reload'
 # ---------------------------------------
 
 alias ghb='gh browse'
-alias review='gh pr list -l 金レビュー中'
 alias gpv='gh pr view'
+alias re='gh pr list --search "user-review-requested:@me"'
 
 # ----------------------------------------
 # tab name
@@ -246,3 +291,15 @@ tab-name() {
   echo $1
   echo -ne "\e]1;$1\a"
 }
+
+# ----------------------------------------
+# aws
+# ---------------------------------------
+alias cluster='aws --profile ga_main --region ap-northeast-1 ssm start-session --target'
+alias cwt='~/Desktop/Jinsu/shell/shell/aws/aws_cloud_watch_tail.sh'
+
+# ----------------------------------------
+# curl
+# ---------------------------------------
+alias cur='cd ~/Desktop/products/curls/'
+alias cura='cd ~/Desktop/products/curls/agnt'
