@@ -1,0 +1,131 @@
+# fzf
+# update <ctrl-r>>
+# export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border --inline-info --preview 'head -100 {}'"
+
+export FZF_DEFAULT_OPTS="--preview 'bat  --color=always --style=header,grid --line-range :100 {}'"
+# export FZF_DEFAULT_COMMAND='fd --type f'
+# export FZF_CTRL_T_COMMAND='fd --type f' # export FZF_ALT_C_COMMAND='fd --type d'
+
+# find branch list
+fbr() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+fgd() {
+  local selected
+  preview="git diff $@ --color=always -- {-1}"
+  selected=$(git diff $@ --name-only | fzf -m --ansi --preview $preview)
+  if [[ -n "$selected" ]]; then
+#      selected=$(tr '\n' ' ' <<< "$selected")
+    echo $selected
+    git diff $selected | bat
+  fi
+}
+
+fga() {
+  local selected
+  preview="git diff $@ --color=always -- {-1}"
+  selected=$(git diff $@ --name-only | fzf -m --ansi --preview $preview)
+  if [[ -n "$selected" ]]; then
+#      selected=$(tr '\n' ' ' <<< "$selected")
+    git add $selected
+    git st
+  fi
+}
+
+fgs() {
+  local selected
+  preview="git diff $@ --color=always -- {-1}"
+  selected=$(git diff $@ --name-only | fzf -m --ansi --preview $preview)
+  if [[ -n "$selected" ]]; then
+    git st
+    vim $selected
+  fi
+}
+
+fgst() {
+  local selected
+  selected=$(
+    git stash list |
+    fzf --preview 'echo {} | grep -o "stash@{[0-9].*}" | xargs git stash show -p --color=always' --height 90% |
+    grep -o "stash@{[0-9].*}"
+  )
+
+  if [[ -n "$selected" ]]; then
+    echo "git stash apply succeed"
+    echo $selected
+    git stash apply $selected
+  fi
+}
+
+# find directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# open file to vim
+fv () {
+  local file
+  file=$(find ${1:-.} -path '*/\.*' -prune \
+      -o -type f -print 2> /dev/null | fzf +m) &&
+
+  vim "$file"
+}
+
+fadd() {
+  local out q n addfiles
+  while out=$(
+      git status --short |
+      awk '{if (substr($0,2,1) !~ / /) print $2}' |
+      fzf-tmux --multi --exit-0 --expect=ctrl-d); do
+    q=$(head -1 <<< "$out")
+    n=$[$(wc -l <<< "$out") - 1]
+    addfiles=(`echo $(tail "-$n" <<< "$out")`)
+    [[ -z "$addfiles" ]] && continue
+    if [ "$q" = ctrl-d ]; then
+      git diff --color=always $addfiles | less -R
+    else
+      git add $addfiles
+    fi
+  done
+}
+
+fs() {
+  local out q k sha
+  while out=$(
+    git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
+    fzf --ansi --no-sort --query="$q" --print-query \
+        --expect=ctrl-d,ctrl-b);
+  do
+    IFS=$'\n'; set -f
+    lines=($(<<< "$out"))
+    unset IFS; set +f
+    q="${lines[0]}"
+    k="${lines[1]}"
+    sha="${lines[-1]}"
+    sha="${sha%% *}"
+    [[ -z "$sha" ]] && continue
+    if [[ "$k" == 'ctrl-d' ]]; then
+      git diff $sha
+    elif [[ "$k" == 'ctrl-b' ]]; then
+      git stash branch "stash-$sha" $sha
+      break;
+    else
+      git -c color.ui=always stash show -p $sha | less -+F
+    fi
+  done
+}
+
+# fdl: dockerコンテナを選択し，ログを見る
+fdl() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
+  [ -n "$cid" ] && docker logs -f --tail=200 "$cid"
+}
+
