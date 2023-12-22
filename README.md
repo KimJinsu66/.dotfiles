@@ -17,6 +17,14 @@ sh scripts/initialize.sh
 ### .zshrc_company
 - zshrc/.zshrc_companyファイルにはpullした後会社で利用しているコマンドを入力してください
 
+## 利用するツールInstall
+
+- [Postman](https://www.postman.com/)
+- [TablePlus](https://tableplus.com/)
+- [Notion](https://www.notion.so/ja-jp/desktop)
+- [arc](https://arc.net/)
+- [whale](https://whale.naver.com/en/download/mac/)
+
 
 ## 参考になるブログ記事
 
