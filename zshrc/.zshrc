@@ -1,8 +1,15 @@
 if [ -f "$HOME/.zshrc" ]; then
   echo ".zshrc存在する"
 else
-  echo "hello else"
+  echo "else zshrc"
   ln -s ~/.dotfiles/zshrc/.zshrc ~
+fi
+
+if [ -f "$HOME/.vimrc" ]; then
+  echo ".vimrc存在する"
+else
+  echo "else vimrc"
+  ln -s ~/.dotfiles/vim/.vimrc ~
 fi
 
 # -----------------------
