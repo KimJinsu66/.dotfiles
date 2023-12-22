@@ -12,7 +12,6 @@ set mouse=a
 set ruler
 set hlsearch
 set incsearch
-" set showmatch
 set number
 set background=dark
 set encoding=utf8
@@ -96,15 +95,22 @@ nmap ,t :echo 'test'<CR>
 nnoremap yl :let @+ = substitute(expand('%'), 'spec/', "bin/rspec spec/", "g")<cr>
 nnoremap yk viwy: %s/
 
+" ===============================
 " サイズ変更
+" ===============================
 nnoremap <Tab>l 10<C-w>>
 nnoremap <Tab>h 10<C-w><
 nnoremap <Tab>k 10<C-w>+
 nnoremap <Tab>j 10<C-w>-
+
+" ===============================
 " command
+" ===============================
 command! TT :tab term
 
+" ===============================
 " buffers
+" ===============================
 nnoremap bn :bnext<CR>
 nnoremap bm :bprevious<CR>
 
@@ -120,10 +126,14 @@ map <Leader>nt <ESC>:NERDTree<CR>
 let NERDTreeWinSize=40
 let g:NERDTreeLimitedSyntax = 1
 
+" ===============================
 " vim-indent-guides
+" ===============================
 let g:indent_guides_enable_on_vim_startup = 1
 
+" ===============================
 " plugin追加(~/.vim/plugged foldにインストールされる)
+" ===============================
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
@@ -144,6 +154,9 @@ Plug 'honza/vim-snippets'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'szw/vim-tags'
 " =========================
 " 현재 사용하지 않음
 " =========================
@@ -156,11 +169,9 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " Plug 'pechorin/any-jump.vim'
 " Plug 'Shougo/neomru.vim'
 " Unite.vimで最近使ったファイルを表示できるようにする
-Plug 'vim-airline/vim-airline'
 " Plug 'lambdalisue/fern.vim'
 " Plug 'majutsushi/tagbar'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'szw/vim-tags'
 " Plug 'mileszs/ack.vim'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'iamcco/markdown-preview.vim'
@@ -172,20 +183,16 @@ call plug#end()
 " clolr追加
 " ================================
 colorscheme jellybeans
-"colorscheme molokai
+" colorscheme molokai
 " colorscheme solarized
 " set background=dark
-
-
-" github関連
 
 " ======================
 " ctags
 " ======================
-"set fileformats=unix,dos,mac
-"set fileencodings=utf-8,sjis
 set tags=./app/tags;/
-"set ignorecase
+" ctags -R --exclude=.git --exclude=javascript --exclude=assets
+
 
 " ======================
 " fzf
@@ -193,12 +200,11 @@ set tags=./app/tags;/
 let $FZF_DEFAULT_OPTS="--layout=reverse"
 
  command! -bang -nargs=* Rg
-   \ call fzf#vim#grep(
-   \   "rg -g '!design/' -g '!dist/' -g '!pnpm-lock.yaml' -g '!.git' -g '!node_modules' -g '!tags' -g '!.rubocop_todo.yml' -g '!vender' -g '!.gitignore' -g '!.circleci' -g '!jinsu_directory' --column --line-number --hidden --smart-case --no-heading --color=always ".shellescape(<q-args>), 1,
-   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%', '?'),
-   \   <bang>0)
-
+       \ call fzf#vim#grep(
+       \   "rg -g '!design/' -g '!dist/' -g '!pnpm-lock.yaml' -g '!.git' -g '!node_modules' -g '!tags' -g '!.rubocop_todo.yml' -g '!vender' -g '!.gitignore' -g '!.circleci' -g '!jinsu_directory' --column --line-number --hidden --smart-case --no-heading --color=always ".shellescape(<q-args>), 1,
+       \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+       \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%', '?'),
+       \   <bang>0)
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'sharp' } }
 let g:fzf_preview_window = 'right:50%'
 
@@ -258,16 +264,6 @@ let g:ale_linters = {
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:airline#extensions#ale#enabled = 1
-"let g:ale_linters = {
-"\ 'html': [],
-"\ 'ruby': ['rubocop'],
-"\ 'css': ['stylelint'],
-"\}
-
-"let g:ale_linters_explicit = 1
-"let g:airline#extensions#ale#enabled = 1
-"let g:ale_javascript_prettier_use_local_config = 1
-"let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 
 " =============================
 " vimrc
@@ -324,33 +320,6 @@ if has("vim_starting") && !has('gui_running') && has('vertsplit')
 endif
 
 let g:ag_qhandler="copen 15"
-
-
-" =============================
-" unite.vim
-" ============================
-" let g:unite_enable_start_insert = 1
-" let g:unite_enable_split_vertically = 0
-" let g:unite_winwidth = 40
-
-" nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file file/new<CR>
-" nnoremap <silent> ,um :<C-u>Unite  file_mru <CR>
-" nnoremap <silent> ,urc :<C-u>Unite file_rec/async:app/controllers/ <CR>
-" nnoremap <silent> ,urfc :<C-u>Unite file file/new -input=app/controllers/ <CR>
-" nnoremap <silent> ,urm :<C-u>Unite file_rec/async:app/models/ <CR>
-" nnoremap <silent> ,urfm :<C-u>Unite file file/new -input=app/models/ <CR>
-" nnoremap <silent> ,urv :<C-u>Unite file_rec/async:app/views/ <CR>
-" nnoremap <silent> ,urfv :<C-u>Unite file file/new -input=app/views/ <CR>
-" nnoremap <silent> ,urs :<C-u>Unite file_rec/async:app/assets/stylesheets/ <CR>
-" nnoremap <silent> ,urfs :<C-u>Unite file file/new -input=app/assets/stylesheets/ <CR>
-" nnoremap <silent> ,urj :<C-u>Unite file_rec/async:app/assets/javascripts/ <CR>
-" nnoremap <silent> ,urfj :<C-u>Unite file file/new -input=app/assets/javascripts/ <CR>
-" nnoremap <silent> ,uro :<C-u>Unite file_rec/async:config/ <CR>
-" nnoremap <silent> ,urfo :<C-u>Unite file file/new -input=config/ <CR>
-" nnoremap <silent> ,url :<C-u>Unite file_rec/async:lib/ <CR>
-" nnoremap <silent> ,urfl :<C-u>Unite file file/new -input=lib/ <CR>
-" nnoremap <silent> ,urr :<C-u>Unite file_rec/async:spec/ <CR>
-" nnoremap <silent> ,urfr :<C-u>Unite file file/new -input=spec/ <CR>
 
 " =============================
 " NerdTree Tab機能
@@ -417,11 +386,6 @@ map <silent> [Tag]p :tabprevious<CR>
 map <silent> :ca :s/_\(.\)/\u\1/g
 map <silent> :sn : %s/\v([a-z]\@=)([A-Z])/\1_\l\2/g
 
-" ==========================
-" ctags command
-" ==========================
-" ctags -R --exclude=.git --exclude=javascript --exclude=assets
-
 
 " ===========================
 " UltiSnips
@@ -430,48 +394,3 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-
-" RSpec.vim mappings
-"map <Leader>t :call RunCurrentSpecFile()<CR>
-"map <Leader>s :call RunNearestSpec()<CR>
-"map <Leader>l :call RunLastSpec()<CR>
-"map <Leader>a :call RunAllSpecs()<CR>
-
-" jinsu rspec
-"map <silent>  :term ++shell sh ~/Desktop/vagrant/rspec.sh
-
-
-" ================================================
-" dadbod, dadbod-ui
-" ================================================
-
-" Via g:dbs global variable
-"
-
-" \ 'staging': 'postgres://postgres:mypassword@localhost:5432/my-staging-db',
-" \ 'wp': 'mysql://root@localhost/wp_awesome',
-
-" alias fdb=" psql -U postgres -p 5431 -h 0.0.0.0 -d frey_dev"
-" alias cdb=" psql -U postgres -p 15432 -h 0.0.0.0 -d crm"
-let g:dbs = {
-\ 'local_crm': 'postgres://postgres:postgres@localhost:15432/crm',
-\ }
-
-" For example, to add a 「count rows」 helper for postgres, you would add this as a config:
-let g:db_ui_table_helpers = {
-\   'postgresql': {
-\     'Count': 'select count(*) from "{table}"'
-\   }
-\ }
-
-" change db ui icons
-let g:db_ui_icons = {
-\ 'expanded': '▾',
-\ 'collapsed': '▸',
-\ 'saved_query': '*',
-\ 'new_query': '+',
-\ 'tables': '~',
-\ 'buffers': '»',
-\ 'connection_ok': '✓',
-\ 'connection_error': '✕',
-\
