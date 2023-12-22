@@ -1,3 +1,17 @@
+if [ -f "$HOME/.zshrc" ]; then
+  echo ".zshrc存在する"
+else
+  echo "hello else"
+  ln -s ~/.dotfiles/zshrc/.zshrc ~
+fi
+
+# -----------------------
+# 初期ファイル設定
+# -----------------------
+DOTFILE_PATH="$HOME/.dotfiles/zshrc"
+source "$DOTFILE_PATH/.zshrc_fzf"
+source "$DOTFILE_PATH/.zshrc_company"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -16,10 +30,12 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
+# ====== ZSH THEME ============
 ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE="nerdfont-complete"
 export CLICOLOR=1
 export TERM=xterm-256color
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -153,11 +169,15 @@ alias twn='tmux new-window -n'
 alias twr='tmux rename-window'
 
 
-## rails
+# -----------------------
+# rails script
+# -----------------------
 alias log='~/Desktop/Jinsu/shell/rails/log.sh'
 alias tc='~/Desktop/Jinsu/shell/rails/test_context.sh'
 
-## shell
+# -----------------------
+# shell script
+# -----------------------
 alias dr='~/Desktop/Jinsu/shell/shell/remove_debug_code.sh'
 alias tr='bash ~/Desktop/Jinsu/shell/shell/translate.sh'
 alias nc='bash ~/Desktop/Jinsu/shell/shell/notion/create_database_record.bash'
@@ -166,8 +186,8 @@ alias ch='bash ~/Desktop/Jinsu/shell/shell/check_list.sh'
 # -----------------------
 # ruby script
 # -----------------------
-
 alias pru='ruby ~/Desktop/products/verdandi/.script/pull_request_updater.rb'
+alias prs='ruby .script/today_work_pull_requests_printer.rb'
 
 # -----------------------
 # open site
@@ -175,12 +195,6 @@ alias pru='ruby ~/Desktop/products/verdandi/.script/pull_request_updater.rb'
 alias oc='open -a google\ chrome'
 alias google='open https://www.google.com'
 alias d-ja='open https://ja.dict.naver.com/#/main'
-alias frey='open https://github.com/ga-tech/frey/pulls'
-alias obpm='open https://obpm.jp/PM5702585621WEB/PjWorkInput.html'
-alias soji='open https://docs.google.com/spreadsheets/d/12xBPHtE_xHLLC312TK-ARxkSdU2OO0jRAHSLtNGkziM/edit#gid=602904498'
-alias kot='open https://s2.kingtime.jp/admin'
-alias kot='open https://s2.kingtime.jp/admin'
-alias kot='open https://s2.kingtime.jp/admin'
 
 alias gagnt='open https://github.com/ga-tech/verdandi/pulls'
 
@@ -190,11 +204,12 @@ alias gagnt='open https://github.com/ga-tech/verdandi/pulls'
 alias cdsk='cd ~/Desktop/products/skuld'
 alias cdf='cd ~/Desktop/products/frey'
 alias cde='cd ~/Desktop/products/eldir'
-alias cdsn='cd ~/Desktop/products/sale_nomad_cloud'
+alias cds='cd ~/Desktop/products/sale_nomad_cloud'
 alias cdd='cd ~/Desktop/products/common-db-docker'
 alias cda='cd ~/Desktop/products/verdandi'
 alias cdi='cd ~/Desktop/products/agnt_rda'
 alias cdm='cd ~/Desktop/products/tech_after'
+alias cdb='cd ~/Desktop/products/tech_building'
 alias cdc='cd ~/Desktop/products/common-db-docker'
 alias jshell='cd ~/Desktop/Jinsu/shell'
 alias cdsa='cd ~/Desktop/products/supplier-article'
@@ -219,6 +234,8 @@ alias grc='git rebase --con'
 alias gpd='git pull origin develop'
 alias gsd='source ~/Desktop/Jinsu/shell/git_code_delete.sh'
 alias gl='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h %Creset-%C(yellow)%d %Creset%s %Cgreen(%cr)%C(bold blue)<%an>"'
+alias go='git checkout'
+
 # ----------------------------------------
 # docker
 # ---------------------------------------
@@ -257,7 +274,6 @@ alias cdb=" psql -U postgres -p 15432 -h 0.0.0.0 -d crm"
 # fzf
 # ---------------------------------------
 alias f='vim $(fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}")'
-source "$HOME/.zshrc_fzf"
 
 # ----------------------------------------
 # source
@@ -303,3 +319,9 @@ alias cwt='~/Desktop/Jinsu/shell/shell/aws/aws_cloud_watch_tail.sh'
 # ---------------------------------------
 alias cur='cd ~/Desktop/products/curls/'
 alias cura='cd ~/Desktop/products/curls/agnt'
+
+### End of Zinit's installer chunk
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+alias v='vim'
+
