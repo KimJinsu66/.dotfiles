@@ -163,14 +163,14 @@ export PATH=$PATH:/usr/local/Cellar/postgresql@10/10.19_1/bin
 # -----------------------
 # start product
 # -----------------------
-alias startf='source ~/Desktop/Jinsu/shell/start_frey.sh'
-alias starta='source ~/Desktop/Jinsu/shell/start_agnt.sh'
+alias startf='source ~/Desktop/study/start_frey.sh'
+alias starta='source ~/Desktop/study/start_agnt.sh'
 
 # -----------------------
 # shell
 # -----------------------
 ## tmux
-alias ide='bash ~/Desktop/Jinsu/shell/tmux/ide.bash'
+alias ide='bash ~/Desktop/study/tmux/ide.bash'
 alias e='exit'
 alias twn='tmux new-window -n'
 alias twr='tmux rename-window'
@@ -179,16 +179,15 @@ alias twr='tmux rename-window'
 # -----------------------
 # rails script
 # -----------------------
-alias log='~/Desktop/Jinsu/shell/rails/log.sh'
-alias tc='~/Desktop/Jinsu/shell/rails/test_context.sh'
+alias log='~/Desktop/study/shell/rails/log.sh'
+alias tc='~/Desktop/study/shell/rails/test_context.sh'
 
 # -----------------------
 # shell script
 # -----------------------
-alias dr='~/Desktop/Jinsu/shell/shell/remove_debug_code.sh'
-alias tr='bash ~/Desktop/Jinsu/shell/shell/translate.sh'
-alias nc='bash ~/Desktop/Jinsu/shell/shell/notion/create_database_record.bash'
-alias ch='bash ~/Desktop/Jinsu/shell/shell/check_list.sh'
+alias tr='bash ~/Desktop/study/shell/translate.sh'
+alias nc='bash ~/Desktop/study/shell/notion/create_database_record.bash'
+alias ch='bash ~/Desktop/study/shell/check_list.sh'
 
 # -----------------------
 # ruby script
@@ -208,17 +207,7 @@ alias gagnt='open https://github.com/ga-tech/verdandi/pulls'
 # ----------------------------------------
 # cd
 # ---------------------------------------
-alias cdsk='cd ~/Desktop/products/skuld'
-alias cdf='cd ~/Desktop/products/frey'
-alias cde='cd ~/Desktop/products/eldir'
-alias cds='cd ~/Desktop/products/sale_nomad_cloud'
-alias cdd='cd ~/Desktop/products/common-db-docker'
-alias cda='cd ~/Desktop/products/verdandi'
-alias cdi='cd ~/Desktop/products/agnt_rda'
-alias cdm='cd ~/Desktop/products/tech_after'
-alias cdb='cd ~/Desktop/products/tech_building'
-alias cdc='cd ~/Desktop/products/common-db-docker'
-alias jshell='cd ~/Desktop/Jinsu/shell'
+alias stu='cd ~/Desktop/study'
 alias cdsa='cd ~/Desktop/products/supplier-article'
 alias va='cd ~/Desktop/vagrant'
 alias sni='cd ~/.vim/plugged/vim-snippets/snippets'
@@ -239,7 +228,7 @@ alias gpu='git pull origin'
 alias gm='git merge'
 alias grc='git rebase --con'
 alias gpd='git pull origin develop'
-alias gsd='source ~/Desktop/Jinsu/shell/git/git_code_delete.sh'
+alias gsd='source ~/Desktop/study/git/git_code_delete.sh'
 alias gl='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h %Creset-%C(yellow)%d %Creset%s %Cgreen(%cr)%C(bold blue)<%an>"'
 alias go='git checkout'
 
@@ -319,7 +308,7 @@ tab-name() {
 # aws
 # ---------------------------------------
 alias cluster='aws --profile ga_main --region ap-northeast-1 ssm start-session --target'
-alias cwt='~/Desktop/Jinsu/shell/shell/aws/aws_cloud_watch_tail.sh'
+alias cwt='~/Desktop/study/shell/aws/aws_cloud_watch_tail.sh'
 
 # ----------------------------------------
 # curl
