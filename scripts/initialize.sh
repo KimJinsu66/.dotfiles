@@ -17,3 +17,4 @@ open "https://kangyb.tistory.com/23" # ちゃんとまとまっている(韓国�
 # zsh-autosuggestions install
 # リンク: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+gh repo clone KimJinsu66/study ~/Desktop/study
