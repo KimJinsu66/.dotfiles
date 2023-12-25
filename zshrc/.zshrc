@@ -239,7 +239,7 @@ alias gpu='git pull origin'
 alias gm='git merge'
 alias grc='git rebase --con'
 alias gpd='git pull origin develop'
-alias gsd='source ~/Desktop/Jinsu/shell/git_code_delete.sh'
+alias gsd='source ~/Desktop/Jinsu/shell/git/git_code_delete.sh'
 alias gl='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h %Creset-%C(yellow)%d %Creset%s %Cgreen(%cr)%C(bold blue)<%an>"'
 alias go='git checkout'
 
