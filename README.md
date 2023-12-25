@@ -24,8 +24,14 @@ sh scripts/initialize.sh
 - [Notion](https://www.notion.so/ja-jp/desktop)
 - [arc](https://arc.net/)
 - [whale](https://whale.naver.com/en/download/mac/)
+- [clipy](https://clipy-app.com/)
+- [Alfred 5](https://www.alfredapp.com/)
 
 
 ## 参考になるブログ記事
 
 [ようこそdotfilesの世界へ](https://qiita.com/yutkat/items/c6c7584d9795799ee164)
+
+## git cloneする
+
+gh repo clone KimJinsu66/study ~/Desktop/study
