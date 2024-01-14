@@ -209,7 +209,6 @@ alias gagnt='open https://github.com/ga-tech/verdandi/pulls'
 # ---------------------------------------
 alias stu='cd ~/Desktop/study'
 alias cdsa='cd ~/Desktop/products/supplier-article'
-alias va='cd ~/Desktop/vagrant'
 alias sni='cd ~/.vim/plugged/vim-snippets/snippets'
 alias mm='cd ~/Desktop/Jinsu/memo'
 
@@ -227,6 +226,7 @@ alias gd='git diff | git-split-diffs --color | less -RFX'
 alias gpu='git pull origin'
 alias gm='git merge'
 alias grc='git rebase --con'
+alias gr='git restore'
 alias gpd='git pull origin develop'
 alias gsd='source ~/Desktop/study/git/git_code_delete.sh'
 alias gl='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h %Creset-%C(yellow)%d %Creset%s %Cgreen(%cr)%C(bold blue)<%an>"'
@@ -320,4 +320,3 @@ alias cura='cd ~/Desktop/products/curls/agnt'
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 alias v='vim'
-
