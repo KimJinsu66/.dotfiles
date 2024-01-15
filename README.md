@@ -19,6 +19,9 @@ sh scripts/initialize.sh
 
 - vimに関連するdotfileです
 
+1. vim-plug関連install後、PlugInstallしてください
+2. https://github.com/nanotech/jellybeans.vimをInstallしてください。
+
 ## oh-my-zsh
 
 - oh-my-zsh関連するdotfileです
@@ -44,3 +47,12 @@ sh scripts/initialize.sh
 ## git cloneする
 
 gh repo clone KimJinsu66/study ~/Desktop/study
+
+## iTerm2 透明設定
+
+- **iTerm > Preferences > Profiles > Window > Transparency**
+    - 現在20％で利用中
+
+## Hotkey設定
+
+https://qiita.com/okamu_/items/a5086d2d5ba405f35acb
