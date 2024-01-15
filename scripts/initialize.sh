@@ -1,4 +1,5 @@
 ln -s ~/.dotfiles/zshrc/.zshrc ~
+ln -s ~/.dotfiles/vim/.vimrc ~
 
 # oh my zshを先にdownloadする必要がある
 # https://ohmyz.sh/#install
@@ -8,12 +9,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 brew install gh
 brew install ripgrep # installしないとvim設定でエラー発生、検索で利用している
 
-
 # powerlevel10k terminalデザインのため修正
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
 
 open "https://kangyb.tistory.com/23" # ちゃんとまとまっている(韓国語)
-
 open "https://github.com/junegunn/vim-plug" # vim-plug site
 
 # zsh-autosuggestions install

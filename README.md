@@ -20,7 +20,7 @@ sh scripts/initialize.sh
 - vimに関連するdotfileです
 
 1. vim-plug関連install後、PlugInstallしてください
-2. https://github.com/nanotech/jellybeans.vimをInstallしてください。
+2. https://github.com/nanotech/jellybeans.vim をInstallしてください。
 
 ## oh-my-zsh
 
@@ -56,3 +56,12 @@ gh repo clone KimJinsu66/study ~/Desktop/study
 ## Hotkey設定
 
 https://qiita.com/okamu_/items/a5086d2d5ba405f35acb
+
+gh repo clone KimJinsu67/study ~/Desktop/study
+
+## UltiSnips関連エラーが発生した場合
+```shell
+brew install vim
+```
+コマンド実行後、再度画面を開いてください
+:versionで確認してみるとpythonが正しく保存されてないことでエラーが発生しているぽい
