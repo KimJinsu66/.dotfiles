@@ -1,7 +1,16 @@
 # Jinsu Kimの.dotfiles
 
-## 最初すること
+## 一番最初何もない時
 
+1. brewインストる
+https://brew.sh/
+
+2. git download
+```shell
+brew install git
+```
+
+## 最初すること
 ```
 sh scripts/initialize.sh
 ```
