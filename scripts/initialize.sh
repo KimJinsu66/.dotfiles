@@ -14,6 +14,8 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
 
 open "https://kangyb.tistory.com/23" # ちゃんとまとまっている(韓国語)
 
+open "https://github.com/junegunn/vim-plug" # vim-plug site
+
 # zsh-autosuggestions install
 # リンク: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
