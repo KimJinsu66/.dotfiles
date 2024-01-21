@@ -1,6 +1,9 @@
 ln -s ~/.dotfiles/zshrc/.zshrc ~
 ln -s ~/.dotfiles/vim/.vimrc ~
 
+# pushする時に聞かれないようにする
+git config --global push.default current
+
 # oh my zshを先にdownloadする必要がある
 # https://ohmyz.sh/#install
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
