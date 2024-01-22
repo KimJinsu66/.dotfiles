@@ -4,6 +4,12 @@ ln -s ~/.dotfiles/vim/.vimrc ~
 # pushする時に聞かれないようにする
 git config --global push.default current
 
+# git alias
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+
 # oh my zshを先にdownloadする必要がある
 # https://ohmyz.sh/#install
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
