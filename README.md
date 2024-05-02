@@ -65,3 +65,7 @@ brew install vim
 ```
 コマンド実行後、再度画面を開いてください
 :versionで確認してみるとpythonが正しく保存されてないことでエラーが発生しているぽい
+
+## vim ale rubocopをdocker-compose上で利用する
+aleはdocker環境の対応を行なっていない、かつdocker-composeを上手くしても起動しないため手動でファイル作成が必要です
+自分が利用しているプロダクトにrubocopファイルを作成し、scrips/rubocopのファイルをコピーしてください
