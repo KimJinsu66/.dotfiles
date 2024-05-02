@@ -92,7 +92,8 @@ nnoremap <C-w>e :term<CR>
 nnoremap <C-w>gd :term ++close git diff<CR>
 nnoremap <silent><S-TAB> <C-w>:<c-u>tabNext<cr>
 nmap ,t :echo 'test'<CR>
-nnoremap yl :let @+ = substitute(expand('%'), 'spec/', "bin/rspec spec/", "g")<cr>
+" nnoremap yl :let @+ = substitute(expand('%'), 'spec/', "bin/rspec spec/", "g")<cr>
+nnoremap yl :let @+ = 'bin/rspec' . ' ' . expand('%')<cr>
 nnoremap yk viwy: %s/
 
 " ===============================
@@ -149,7 +150,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim'
 Plug 'w0rp/ale'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dadbod'
@@ -251,7 +252,7 @@ vnoremap y y`>
 " quick
 " ===================
 autocmd QuickFixCmdPost *grep* cwindow
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
+
 
 filetype plugin on
 
@@ -261,9 +262,18 @@ filetype plugin on
 let g:ale_linters = {
 \ 'ruby': ['rubocop'],
 \}
-let g:ale_fix_on_save = 1
-let g:ale_linters_explicit = 1
-let g:airline#extensions#ale#enabled = 1
+
+let g:ale_ruby_rubocop_executable = './rubocop'
+let g:ale_ruby_rubocop_auto_correct_all = 1
+" let g:ale_fix_on_save = 1
+" let g:ale_linters_explicit = 1
+" let g:airline#extensions#ale#enabled = 1
+
+" let g:ale_filename_mappings = {
+"   \ 'rubocop': [
+"   \   ['~/dotfiles/scripts', '/opt']
+"   \ ],
+"   \}
 
 " =============================
 " vimrc
@@ -394,3 +404,28 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
+
+
+" popup
+"
+nnoremap <C-p> :call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: winwidth(0)/2, minheight: &lines/2 })
+
+function! s:jinsu_create_popup()
+  " execute 'Dispatch docker-compose exec -T app bundle exec rubocop'
+
+  " system('docker-compose exec app bundle exec rubocop -A app/services/work_contract_document_registry/create_offering_pdf_service.rb')
+  let output = system('docker-compose exec -T app bundle exec rubocop app/services/work_contract_document_registry/create_offering_pdf_service.rb')
+
+  call popup_create(output, #{
+        \ pos: 'right',
+        \ zindex: 200,
+        \ drag: 1,
+        \ border: [],
+        \ padding: [],
+        \ mapping: 0,
+        \})
+endfunction
+
+nnoremap <C-o> :call s:jinsu_create_popup()<CR>
+
+command! Rubocop call s:jinsu_create_popup()

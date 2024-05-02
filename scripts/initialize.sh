@@ -28,3 +28,7 @@ open "https://github.com/junegunn/vim-plug" # vim-plug site
 # リンク: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 gh repo clone KimJinsu66/study ~/Desktop/study
+
+echo '=== vim ale pluginの説明 ==='
+echo 'aleはdocker環境の対応を行なっていない、かつdocker-composeを上手くしても起動しないため手動でファイル作成が必要です'
+echo '自分が利用しているプロダクトにrubocopファイルを作成し、scrips/rubocopのファイルをコピしてください'

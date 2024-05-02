@@ -1,0 +1,22 @@
+# bin/rubocop
+#!/usr/bin/env ruby
+
+puts 'test'
+
+require 'pathname'
+require 'fileutils'
+
+include FileUtils
+
+APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+
+puts "APP_ROOT #{APP_ROOT}}"
+
+chdir APP_ROOT do
+  rubocop_command = "bundle exec rubocop #{ARGV.join(' ')}"
+  puts "ARGV: #{ARGV}"
+  puts 'rubocop_command: ' + rubocop_command
+
+  puts "result: #{system("docker-compose exec -T app #{rubocop_command}'")}"
+  system("docker-compose exec -T app #{rubocop_command}'")
+end
