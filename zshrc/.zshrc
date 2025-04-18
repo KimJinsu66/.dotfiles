@@ -154,8 +154,9 @@ function zshalias()
 setopt nomatch
 
 # vim
-alias zshrc='vim ~/.zshrc'
-alias vimrc='vim ~/.vimrc'
+alias zshrc='nv ~/.zshrc'
+alias vimrc='nv ~/.vimrc'
+alias nvimrc='nv ~/.config/nvim/init.vim'
 
 # postgresql 設定
 export PATH=$PATH:/usr/local/Cellar/postgresql@10/10.19_1/bin
@@ -237,16 +238,16 @@ alias go='git checkout'
 # ---------------------------------------
 alias sd='/usr/bin/open /Applications/Docker.app'
 alias d='docker'
-alias dc='docker-compose'
-alias dcu='docker-compose up'
-alias dcb='docker-compose exec app bash'
-alias dcewa='docker-compose exec webapp'
-alias dcew='docker-compose exec web'
-alias db='docker-compose exec web bash'
-alias lint='docker-compose exec webapp yarn lint:js --fix; docker-compose exec webapp yarn lint:css --fix'
-alias lintf='docker-compose exec webapp yarn lint:js --fix'
-alias rubocop='docker-compose exec webapp rubocop'
-alias test='docker-compose exec webapp rails test'
+alias dc='docker compose'
+alias dcu='docker compose up'
+alias dcb='docker compose exec app bash'
+alias dcea='docker compose exec app'
+alias dcew='docker compose exec web'
+alias db='docker compose exec web bash'
+alias lint='docker compose exec webapp yarn lint:js --fix; docker-compose exec webapp yarn lint:css --fix'
+alias lintf='docker compose exec webapp yarn lint:js --fix'
+alias rubocop='docker compose exec webapp rubocop'
+alias test='docker-compose exec app rails test'
 alias api='docker-compose exec aglio bash build.sh'
 
 # ----------------------------------------
@@ -269,7 +270,7 @@ alias cdb=" psql -U postgres -p 15432 -h 0.0.0.0 -d crm"
 # ----------------------------------------
 # fzf
 # ---------------------------------------
-alias f='vim $(fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}")'
+alias f='nv $(fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}")'
 
 # ----------------------------------------
 # source
@@ -320,3 +321,9 @@ alias cura='cd ~/Desktop/products/curls/agnt'
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 alias v='vim'
+alias nv='nvim'
+# ----------------------------------------
+# リリース
+# ---------------------------------------
+alias rh='docker build --platform=linux/amd64 -t hubco .'
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
