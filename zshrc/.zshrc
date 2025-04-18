@@ -232,6 +232,7 @@ alias gpd='git pull origin develop'
 alias gsd='source ~/Desktop/study/git/git_code_delete.sh'
 alias gl='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h %Creset-%C(yellow)%d %Creset%s %Cgreen(%cr)%C(bold blue)<%an>"'
 alias go='git checkout'
+alias gbda="git branch | grep -vE '^\*|master$|develop$' | xargs -I % git branch -D %"
 
 # ----------------------------------------
 # docker
@@ -316,9 +317,6 @@ alias cwt='~/Desktop/study/shell/aws/aws_cloud_watch_tail.sh'
 # ---------------------------------------
 alias cur='cd ~/Desktop/products/curls/'
 alias cura='cd ~/Desktop/products/curls/agnt'
-
-### End of Zinit's installer chunk
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 alias v='vim'
 alias nv='nvim'
