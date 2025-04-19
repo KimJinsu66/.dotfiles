@@ -7,6 +7,7 @@ return {
     },
     build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
+      model= "gemini-2.0-flash-001"
       -- See Configuration section for options
     },
     -- See Commands section for default commands if you want to lazy load on them
