@@ -1,5 +1,6 @@
 ln -s ~/.dotfiles/zshrc/.zshrc ~
 ln -s ~/.dotfiles/vim/.vimrc ~
+ln -s ~/.dotfiles/nvim ~/.config/nvim
 
 # pushする時に聞かれないようにする
 git config --global push.default current
