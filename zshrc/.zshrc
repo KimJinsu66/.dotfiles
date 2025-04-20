@@ -318,8 +318,9 @@ alias cwt='~/Desktop/study/shell/aws/aws_cloud_watch_tail.sh'
 alias cur='cd ~/Desktop/products/curls/'
 alias cura='cd ~/Desktop/products/curls/agnt'
 
-alias v='vim'
+alias v='nvim'
 alias nv='nvim'
+alias nvset='~/.config/nvim'
 # ----------------------------------------
 # リリース
 # ---------------------------------------
