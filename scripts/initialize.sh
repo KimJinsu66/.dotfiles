@@ -18,6 +18,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # 開発で必要なライブラリInstall
 brew install gh
 brew install ripgrep # installしないとvim設定でエラー発生、検索で利用している
+brew install git-delta # git diff viewer https://github.com/dandavison/delta
 
 # powerlevel10k terminalデザインのため修正
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
