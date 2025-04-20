@@ -94,6 +94,7 @@ nnoremap <silent><S-TAB> <C-w>:<c-u>tabNext<cr>
 nmap ,t :echo 'test'<CR>
 " nnoremap yl :let @+ = substitute(expand('%'), 'spec/', "bin/rspec spec/", "g")<cr>
 nnoremap yl :let @+ = 'bin/rspec' . ' ' . expand('%')<cr>
+nnoremap y; :let @+ = expand('%')<cr>
 nnoremap yk viwy: %s/
 
 " ===============================
@@ -150,7 +151,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim'
 Plug 'w0rp/ale'
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dadbod'
@@ -178,6 +179,7 @@ Plug 'szw/vim-tags'
 " Plug 'iamcco/markdown-preview.vim'
 " Plug 'iamcco/mathjax-support-for-mkdp'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'skanehira/preview-markdown.vim'
 call plug#end()
 
 " ================================
@@ -404,28 +406,3 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-
-
-" popup
-"
-nnoremap <C-p> :call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: winwidth(0)/2, minheight: &lines/2 })
-
-function! s:jinsu_create_popup()
-  " execute 'Dispatch docker-compose exec -T app bundle exec rubocop'
-
-  " system('docker-compose exec app bundle exec rubocop -A app/services/work_contract_document_registry/create_offering_pdf_service.rb')
-  let output = system('docker-compose exec -T app bundle exec rubocop app/services/work_contract_document_registry/create_offering_pdf_service.rb')
-
-  call popup_create(output, #{
-        \ pos: 'right',
-        \ zindex: 200,
-        \ drag: 1,
-        \ border: [],
-        \ padding: [],
-        \ mapping: 0,
-        \})
-endfunction
-
-nnoremap <C-o> :call s:jinsu_create_popup()<CR>
-
-command! Rubocop call s:jinsu_create_popup()
