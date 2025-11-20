@@ -5,6 +5,22 @@ return {
   -- or if using mini.icons/mini.nvim
   dependencies = { "echasnovski/mini.icons" },
   opts = {},
+  config = function()
+    require('fzf-lua').setup({
+      grep = {
+        rg_opts = "--column --line-number --color=always -g '!{.git,sig}/*'",
+        fzf_opts = {
+          ["--delimiter"] = "[\\):]",
+          ['--with-nth'] = '1,4',
+        },
+      },
+      files = {
+        prompt = "Files> ",
+        file_ignore_patterns = { "%.rbs$" },
+      },
+      file_ignore_patterns = { "%.rbs$" },
+    })
+  end,
   keymap = {
     -- Below are the default binds, setting any value in these tables will override
     -- the defaults, to inherit from the defaults change [1] from `false` to `true`
